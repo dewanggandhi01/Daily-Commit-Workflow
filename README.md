@@ -1,29 +1,36 @@
 # 🕓 Daily Commit Workflow
 
-This repository contains a GitHub Actions workflow that **automatically makes a daily commit** to this repository. It is useful for maintaining GitHub contribution streaks or simply experimenting with GitHub Actions and cron jobs.
+This repository uses **GitHub Actions** to run a workflow that automatically commits a new line to a log file every day. It's a simple way to learn how scheduled workflows work, and it's also useful for keeping your GitHub contribution graph green!
 
 ---
 
-## 📋 Features
+## 🚀 Features
 
-- 🔁 **Scheduled Commit** once every day
-- 📧 Includes a step labeled with email `23f2004781@ds.study.iitm.ac.in`
-- 🕒 Runs daily at **4:15 AM UTC** (⏰ 9:45 AM IST)
-- 📄 Appends a timestamped line to `daily-log.txt`
-- ✅ Uses `actions/checkout@v3` with persistent credentials to push commits
+- 📅 **Daily Scheduled Commit** using `cron`
+- ✅ **Commit created automatically** by GitHub Actions
+- 📩 **Identifiable step** named with your email: `23f2004781@ds.study.iitm.ac.in`
+- 📁 Appends a new line to `daily-log.txt` every day
+- 📌 Uses `actions/checkout@v3` with push support
+- 🔄 Manual trigger supported via `workflow_dispatch`
 
 ---
 
-## 📂 Workflow File
+## 🛠 Workflow Details
 
-Location: `.github/workflows/daily-commit.yml`
+- **Location**: `.github/workflows/daily-commit.yml`
+- **Schedule**: Daily at `4:15 AM UTC` → `9:45 AM IST`
+- **Main File Modified**: `daily-log.txt`
+
+---
+
+## 🧾 Workflow Code
 
 ```yaml
 name: Daily Commit
 
 on:
   schedule:
-    - cron: '15 4 * * *'  # Daily at 4:15 AM UTC
+    - cron: '15 4 * * *'  # Runs daily at 4:15 AM UTC (9:45 AM IST)
   workflow_dispatch:
 
 jobs:
@@ -47,38 +54,3 @@ jobs:
           git add daily-log.txt
           git commit -m "Auto commit at $(date -u)" || echo "No changes to commit"
           git push origin main
-📈 Result
-Each time the workflow runs, you will see:
-
-A new commit in the repo
-
-A new line in daily-log.txt with the current UTC date and time
-
-A successful Action run visible in the Actions tab
-
-📌 Usage
-You can manually run the workflow from the Actions tab
-
-It will also run automatically every day via the cron schedule
-
-🧑‍💻 Maintainer
-✉️ 23f2004781@ds.study.iitm.ac.in
-🔗 github.com/dewanggandhi01
-
-📜 License
-This project is licensed under the MIT License (if you want to add one).
-
-yaml
-Copy code
-
----
-
-### ✅ How to Add It
-
-1. Go to your repo
-2. Click **Add file → Create new file**
-3. Name it: `README.md`
-4. Paste the above content
-5. Click **Commit new file**
-
-Let me know if you want me to add badges or change the style!
